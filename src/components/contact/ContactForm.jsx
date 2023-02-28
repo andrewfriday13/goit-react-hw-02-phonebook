@@ -9,7 +9,7 @@ export const ContactForm = ({onSubmit}) => {
     <Formik  
       initialValues={{
         name: '',
-        number: ''   ,
+        number: '' ,
       }}
       onSubmit={values=>{
         onSubmit({ 
