@@ -8,9 +8,9 @@ import { nanoid } from 'nanoid';
 export class App extends Component{
 
   state = {
-  contacts: [   ],
+  contacts: [ ],
 
-    findContact: '',
+    filter: '',
 
   }
   addContact = newContact => {
@@ -23,13 +23,13 @@ export class App extends Component{
 
   filterContact = event =>{
     this.setState({
-      findContact: event.currentTarget.value
+      filter: event.currentTarget.value
     })
   }
 
   render() {
-    const {contacts, findContact} = this.state
-    // const findContacts = this.state.contacts.filter(contact => contact.text.toLowerCase().includes(this.state.findContact.toLowerCase()))
+    const {contacts, filter} = this.state
+    // const filters = this.state.contacts.filter(contact => contact.text.toLowerCase().includes(this.state.filter.toLowerCase()))
     return (
       <div>
         <h1>Phonebook</h1>
@@ -37,7 +37,7 @@ export class App extends Component{
         <h2>Contacts</h2>
         <Filter 
         onChange={this.filterContact} 
-        value={findContact}/>
+        value={filter}/>
         <ContactList contacts={contacts} />
     </div>
   );}
