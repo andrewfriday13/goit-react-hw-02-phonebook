@@ -10,14 +10,16 @@ export const ContactForm = ({onSubmit}) => {
       initialValues={{
         name: '',
         number: '' ,
-        id: ''
       }}
       onSubmit={(values, actions)=>{
         onSubmit({ 
           id: nanoid(),
           ...values,
         });
-        actions.resetForm()
+        // actions.resetForm();
+        if(true){
+          console.log(values)
+        }
       }}
     >
       <Form>
