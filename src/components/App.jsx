@@ -5,15 +5,20 @@ import { Filter } from './filter/Filter';
 import { nanoid } from 'nanoid';
 
 
+
 export class App extends Component{
 
   state = {
-  contacts: [ ],
+  contacts: [ {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+  {id: nanoid(), name: 'Hermione Kline', number: '443-89-12'},
+  {id: nanoid(), name: 'Eden Clements', number: '645-17-79'},
+  {id: nanoid(), name: 'Annie Copeland', number: '227-91-26'},],
 
     filter: '',
 
   }
   addContact = newContact => {
+
     this.setState(prevState => {
       return {
         contacts:[...prevState.contacts, newContact ]
@@ -21,11 +26,19 @@ export class App extends Component{
     })
   }
 
+
+
   filterContact = event =>{
+    const { name, value}  =event.currentTarget
     this.setState({
-      filter: event.currentTarget.value
+      [name]: value
     })
   }
+  removeContact =(contactId)=>{
+    this.setState(prevState => ({
+      contacts:  prevState.contacts.filter(contact => contact.id !== contactId )
+    }))
+  }  
 
   render() {
     const {contacts, filter} = this.state
@@ -38,7 +51,10 @@ export class App extends Component{
         <Filter 
         onChange={this.filterContact} 
         value={filter}/>
-        <ContactList contacts={contacts} />
+        <ContactList
+        onRemove={this.removeContact}
+        filter={filter}
+         contacts={contacts} />
     </div>
   );}
 };

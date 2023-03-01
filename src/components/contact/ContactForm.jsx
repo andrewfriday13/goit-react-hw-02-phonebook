@@ -10,12 +10,14 @@ export const ContactForm = ({onSubmit}) => {
       initialValues={{
         name: '',
         number: '' ,
+        id: ''
       }}
-      onSubmit={values=>{
+      onSubmit={(values, actions)=>{
         onSubmit({ 
           id: nanoid(),
           ...values,
-        })
+        });
+        actions.resetForm()
       }}
     >
       <Form>
@@ -40,3 +42,4 @@ export const ContactForm = ({onSubmit}) => {
     </Formik>
   )
 }
+
