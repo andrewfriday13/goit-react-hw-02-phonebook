@@ -16,7 +16,7 @@ export const ContactForm = ({onSubmit}) => {
           id: nanoid(),
           ...values,
         });
-        // actions.resetForm();
+        actions.resetForm();
         if(true){
           console.log(values)
         }
