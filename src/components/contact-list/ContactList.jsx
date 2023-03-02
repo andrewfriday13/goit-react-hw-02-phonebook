@@ -1,3 +1,4 @@
+import { PropTypes } from "prop-types"
 import React from 'react';
 
 export const ContactList = ({contacts, filter, onRemove})=>{
@@ -14,4 +15,16 @@ export const ContactList = ({contacts, filter, onRemove})=>{
       </ul>
     
   )
+}
+
+ContactList.propTypes ={
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  })),
+  filter: PropTypes.string,
+  onRemove: PropTypes.func,
+
+
 }

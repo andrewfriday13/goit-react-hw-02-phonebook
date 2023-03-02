@@ -37,7 +37,6 @@ console.log(number)
 
   filterContact = event =>{
     const { name, value}  =event.currentTarget
-    console.log(event.target)
     this.setState({
       [name]: value
     })
@@ -50,7 +49,6 @@ console.log(number)
 
   render() {
     const {contacts, filter} = this.state
-    // const filters = this.state.contacts.filter(contact => contact.text.toLowerCase().includes(this.state.filter.toLowerCase()))
     return (
       <div>
         <h1>Phonebook</h1>

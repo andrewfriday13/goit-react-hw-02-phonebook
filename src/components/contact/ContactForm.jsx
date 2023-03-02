@@ -1,5 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
+import { PropTypes } from "prop-types"
+
 
    
 
@@ -44,15 +46,6 @@ export const ContactForm = ({onSubmit}) => {
   )
 }
 
-// const findedContact = this.state.contacts.find(contact =>
-//   contact.name.toLowerCase().includes(name.toLowerCase())
-// ); 
-
-// if (findedContact) {
-//   alert(`${findedContact.name} is already in contacts`);
-//   return;
-// } else {
-//   this.setState(prevState => ({
-//     contacts: [...prevState.contacts, { id: friendId, name, number }],
-//   }));
-// }
+ContactForm.propTypes={
+  onSubmit: PropTypes.func.isRequired,
+}
