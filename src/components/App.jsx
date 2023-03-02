@@ -20,17 +20,24 @@ export class App extends Component{
     filter: '',
   }
   
-  addContact = newContact => {
-    this.setState(prevState => {
-      return {
-        contacts:[...prevState.contacts, newContact ]
-      }
-    })
-  }
-
+  addContact = (name, number) => {
+    if (this.state.contacts.map(contact => contact.name).includes(name)) {
+      return alert(`${name} is alredy in contacts.`);
+    }
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+console.log(number)
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
+  };
 
   filterContact = event =>{
     const { name, value}  =event.currentTarget
+    console.log(event.target)
     this.setState({
       [name]: value
     })

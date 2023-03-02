@@ -5,22 +5,21 @@ import { nanoid } from 'nanoid';
 
 
 export const ContactForm = ({onSubmit}) => {
+  const initialValues ={ 
+    name: '',
+    number: '',
+  }
+  const handleSubmit = (values, { resetForm }) => {
+    resetForm();
+
+    onSubmit(values.name, values.number);
+  };
+
   return (  
+    
     <Formik  
-      initialValues={{
-        name: '',
-        number: '' ,
-      }}
-      onSubmit={(values, actions)=>{
-        onSubmit({ 
-          id: nanoid(),
-          ...values,
-        });
-        actions.resetForm();
-        if(true){
-          console.log(values)
-        }
-      }}
+    initialValues={initialValues}
+      onSubmit={handleSubmit}
     >
       <Form>
         <label>
@@ -45,3 +44,15 @@ export const ContactForm = ({onSubmit}) => {
   )
 }
 
+// const findedContact = this.state.contacts.find(contact =>
+//   contact.name.toLowerCase().includes(name.toLowerCase())
+// ); 
+
+// if (findedContact) {
+//   alert(`${findedContact.name} is already in contacts`);
+//   return;
+// } else {
+//   this.setState(prevState => ({
+//     contacts: [...prevState.contacts, { id: friendId, name, number }],
+//   }));
+// }
