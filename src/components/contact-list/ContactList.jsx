@@ -1,17 +1,22 @@
 import { PropTypes } from "prop-types"
 import React from 'react';
+import css from './ContactListStyle.module.css'
 
 export const ContactList = ({contacts, filter, onRemove})=>{
   return(
-      <ul>
+      <ul className={css.list__contact}>
         {contacts.length > 0 ? (
         contacts.filter(({name})=>
         name.toLowerCase().includes(filter.toLowerCase())).map(({id, name, number}) =>
-          <li key={id}>
-            <p>{name}: {number}</p>
-            <button onClick={()=>{onRemove(id)}}>Remove</button>
+          <li key={id}
+          className={css.items__contact}
+          >
+            <p className={css.contact}>{name}: {number}</p>
+            <button 
+            className={css.remove__btn}
+            onClick={()=>{onRemove(id)}}>Remove</button>
           </li>
-        )): ('You don`t have contacts')}
+        )): (<span style={{fontSize: "30px"}} >You don`t have contacts</span>)}
       </ul>
     
   )
