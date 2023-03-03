@@ -7,20 +7,36 @@ import css from './app.module.css'
 import { nanoid } from 'nanoid';
 
 
-
+const objContacts=[
+  {id: nanoid(), name: 'Rosie Simpson', number: '459-12-56'},
+  {id: nanoid(), name: 'Hermione Kline', number: '443-89-12'},
+  {id: nanoid(), name: 'Eden Clements', number: '645-17-79'},
+  {id: nanoid(), name: 'Annie Copeland', number: '227-91-26'}
+]
 
 export class App extends Component{
 
   state = {
-  contacts: [ 
-    {id: nanoid(), name: 'Rosie Simpson', number: '459-12-56'},
-    {id: nanoid(), name: 'Hermione Kline', number: '443-89-12'},
-    {id: nanoid(), name: 'Eden Clements', number: '645-17-79'},
-    {id: nanoid(), name: 'Annie Copeland', number: '227-91-26'},
-  ], 
+  contacts: [], 
     filter: '',
   }
+  componentDidMount(){
   
+    const localContact = localStorage.getItem('contacts')
+    if(localContact !== null){
+      const parseContact = JSON.parse(localContact)
+      this.setState({contacts: parseContact})
+      return
+    }
+    this.setState({contacts: objContacts})
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.contacts !== this.state.contacts){
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
+
   addContact = (name, number) => {
     if (this.state.contacts.map(contact => contact.name).includes(name)) {
       return alert(`${name} is alredy in contacts.`);
